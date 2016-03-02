@@ -7,8 +7,10 @@ Use this package if you are writing an Atmosphere package that depends on a give
 For example, if you are depending on a Npm-distributed React component, you don't want to `Npm.depends()` on the Npm package in your Atmosphere package, as this will mean a second copy of React will be shipped client-side as a sub-dependency of your package. Instead, you can do:
 
 ```js
-import {checkNpmVersions} from 'meteor/check-npm-versions';
-checkNpmVersions({'griddle-react': '0.3.x'});
+import { checkNpmVersions } from 'meteor/tmeasday:check-npm-versions';
+checkNpmVersions({
+  'griddle-react': '0.3.x'
+});
 ```
 
 This will prompt the user with an error message if they do not install `griddle-react` at a correct version directly in their application. In your install instructions, you'll still want to tell them to `npm install --save griddle-react` --- this will just tell them what's wrong if they do not.
