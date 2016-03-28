@@ -1,30 +1,54 @@
 import semver from 'semver';
-import {_} from 'meteor/underscore';
+import { _ } from 'meteor/underscore';
 
-const packageIsInstalled = (name, range) => {
+// Returns:
+//   - true      if a version of the package in the range is installed
+//   - false     if no version is installed
+//   - version#  if incompatible version is installed
+const compatibleVersionIsInstalled = (name, range) => {
   try {
     const installedVersion = require(`${name}/package.json`).version;  
-    return semver.satisfies(installedVersion, range);
+    if (semver.satisfies(installedVersion, range)) {
+      return true;
+    } else {
+      return installedVersion;
+    }
   } catch (e) {
+    console.log(e)
     // XXX I guess the only error here is that the module doesn't exist?
     return false;
   }
 };
 
-export const checkNpmVersions = (packages) => {
-  const failures = [];
+export const checkNpmVersions = (packages, packageName) => {
+  const failures = {};
   _.forEach(packages, (range, name) => {
-    if (!packageIsInstalled(name, range)) {
-      failures.push(name);
+    const failure = compatibleVersionIsInstalled(name, range);
+    if (failure !== true) {
+      failures[name] = failure;
     }
   });
 
-  if (failures.length === 0) {
+  if (_.keys(failures).length === 0) {
     return true;
   }
 
-  failures.forEach(name => {
-    const error = failures.map(n => `${n}@${packages[n]} not installed.`).join('\n');
-    throw new Error(error);
+  const errors = [];
+  _.forEach(failures, (installed, name) => {
+    const requirement = `${name}@${packages[name]}`;
+
+    if (installed) {
+      errors.push(` - ${name}@${installed} installed, ${requirement} needed`);
+    } else {
+      errors.push(` - ${name}@${packages[name]} not installed.`);
+    }
   });
+
+  const qualifier = packageName ? `(for ${packageName}) ` : '';
+  console.warn(`WARNING: npm peer requirements ${qualifier}not installed:
+${errors.join('\n')}
+
+Read more about installing npm peer dependencies:
+  http://guide.meteor.com/using-packages.html#peer-npm-dependencies
+`);
 };
