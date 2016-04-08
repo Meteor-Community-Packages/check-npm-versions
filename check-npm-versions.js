@@ -14,9 +14,12 @@ const compatibleVersionIsInstalled = (name, range) => {
       return installedVersion;
     }
   } catch (e) {
-    console.log(e)
-    // XXX I guess the only error here is that the module doesn't exist?
-    return false;
+    // XXX add something to the tool to make this more reliable
+    if (e.toString().match("Can't find npm module")) {
+      return false;
+    } else {
+      throw e;
+    }
   }
 };
 
