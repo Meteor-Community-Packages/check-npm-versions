@@ -15,7 +15,9 @@ const compatibleVersionIsInstalled = (name, range) => {
     }
   } catch (e) {
     // XXX add something to the tool to make this more reliable
-    if (e.toString().match("Can't find npm module")) {
+    const message = e.toString();
+    // One message comes out of the install npm package the other from npm directly
+    if (message.match("Cannot find module") || message.match("Can't find npm module")) {
       return false;
     } else {
       throw e;

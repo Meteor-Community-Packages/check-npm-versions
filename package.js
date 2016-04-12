@@ -1,6 +1,6 @@
 Package.describe({
   name: 'tmeasday:check-npm-versions',
-  version: '0.3.0',
+  version: '0.3.1',
   summary: 'Check that required npm packages are installed at the app level',
   git: 'https://github.com/tmeasday/check-npm-versions.git',
   documentation: 'README.md'
