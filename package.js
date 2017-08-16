@@ -1,9 +1,10 @@
 Package.describe({
   name: 'tmeasday:check-npm-versions',
-  version: '0.3.1',
+  version: '0.3.2',
   summary: 'Check that required npm packages are installed at the app level',
   git: 'https://github.com/tmeasday/check-npm-versions.git',
-  documentation: 'README.md'
+  documentation: 'README.md',
+  debugOnly: true
 });
 
 Npm.depends({'semver': '5.1.0'});
