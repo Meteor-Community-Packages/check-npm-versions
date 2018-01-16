@@ -1,5 +1,4 @@
 import semver from 'semver';
-import { _ } from 'meteor/underscore';
 
 // Returns:
 //   - true      if a version of the package in the range is installed
@@ -7,7 +6,7 @@ import { _ } from 'meteor/underscore';
 //   - version#  if incompatible version is installed
 const compatibleVersionIsInstalled = (name, range) => {
   try {
-    const installedVersion = require(`${name}/package.json`).version;  
+    const installedVersion = require(`${name}/package.json`).version;
     if (semver.satisfies(installedVersion, range)) {
       return true;
     } else {
@@ -27,19 +26,24 @@ const compatibleVersionIsInstalled = (name, range) => {
 
 export const checkNpmVersions = (packages, packageName) => {
   const failures = {};
-  _.forEach(packages, (range, name) => {
+
+  Object.keys(packages).forEach((name) => {
+    const range = packages[name];
     const failure = compatibleVersionIsInstalled(name, range);
+
     if (failure !== true) {
       failures[name] = failure;
     }
   });
 
-  if (_.keys(failures).length === 0) {
+  if (Object.keys(failures).length === 0) {
     return true;
   }
 
   const errors = [];
-  _.forEach(failures, (installed, name) => {
+
+  Object.keys(failures).forEach((name) => {
+    const installed = failures[name];
     const requirement = `${name}@${packages[name]}`;
 
     if (installed) {
