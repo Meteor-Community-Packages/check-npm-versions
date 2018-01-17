@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "semver": {
-      "version": "5.1.0"
+      "version": "5.1.0",
+      "resolved": "https://registry.npmjs.org/semver/-/semver-5.1.0.tgz",
+      "from": "semver@5.1.0"
     }
   }
 }
