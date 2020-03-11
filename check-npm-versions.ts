@@ -1,10 +1,20 @@
 import semver from 'semver';
 
+type boolOrString = boolean | string;
+
+interface indexBoolorString {
+  [key: string]: boolOrString
+}
+
+interface indexAny {
+  [key: string]: any
+}
+
 // Returns:
 //   - true      if a version of the package in the range is installed
 //   - false     if no version is installed
 //   - version#  if incompatible version is installed
-const compatibleVersionIsInstalled = (name, range) => {
+const compatibleVersionIsInstalled = (name: string, range: string | semver.Range): boolOrString => {
   try {
     const installedVersion = require(`${name}/package.json`).version;
     if (semver.satisfies(installedVersion, range)) {
@@ -16,7 +26,7 @@ const compatibleVersionIsInstalled = (name, range) => {
     // XXX add something to the tool to make this more reliable
     const message = e.toString();
     // One message comes out of the install npm package the other from npm directly
-    if (message.match("Cannot find module") || message.match("Can't find npm module")) {
+    if (message.match('Cannot find module') === true || message.match("Can't find npm module") === true) {
       return false;
     } else {
       throw e;
@@ -24,8 +34,8 @@ const compatibleVersionIsInstalled = (name, range) => {
   }
 };
 
-export const checkNpmVersions = (packages, packageName) => {
-  const failures = {};
+export const checkNpmVersions = (packages: indexAny, packageName: string): void => {
+  const failures: indexBoolorString = {};
 
   Object.keys(packages).forEach((name) => {
     const range = packages[name];
@@ -37,10 +47,10 @@ export const checkNpmVersions = (packages, packageName) => {
   });
 
   if (Object.keys(failures).length === 0) {
-    return true;
+    return;
   }
 
-  const errors = [];
+  const errors: string[] = [];
 
   Object.keys(failures).forEach((name) => {
     const installed = failures[name];
