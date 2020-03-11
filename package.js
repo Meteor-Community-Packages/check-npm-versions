@@ -12,5 +12,5 @@ Npm.depends({ semver: '7.1.3' });
 Package.onUse(function (api) {
   api.versionsFrom('1.8.2');
   api.use('typescript');
-  api.mainModule('check-npm-versions.ts');
+  api.mainModule('check-npm-versions.ts', 'server');
 });
