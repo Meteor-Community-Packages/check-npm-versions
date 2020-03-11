@@ -7,7 +7,7 @@ Package.describe({
   documentation: 'README.md',
 });
 
-Npm.depends({ semver: '5.1.0' });
+Npm.depends({ semver: '7.1.3' });
 
 Package.onUse(function (api) {
   api.versionsFrom('1.8.2');
