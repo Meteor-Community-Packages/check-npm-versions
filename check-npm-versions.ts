@@ -26,7 +26,7 @@ const compatibleVersionIsInstalled = (name: string, range: string | semver.Range
     // XXX add something to the tool to make this more reliable
     const message = e.toString();
     // One message comes out of the install npm package the other from npm directly
-    if (message.match('Cannot find module') === true || message.match("Can't find npm module") === true) {
+    if (message.includes('Cannot find module') === true || message.includes("Can't find npm module") === true) {
       return false;
     } else {
       throw e;
