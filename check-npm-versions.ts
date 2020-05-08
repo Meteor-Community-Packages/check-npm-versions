@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import semver from 'semver';
 
 type boolOrString = boolean | string;
@@ -35,39 +36,41 @@ const compatibleVersionIsInstalled = (name: string, range: string | semver.Range
 };
 
 export const checkNpmVersions = (packages: indexAny, packageName: string): void => {
-  const failures: indexBoolorString = {};
+  if (Meteor.isDevelopment) {
+    const failures: indexBoolorString = {};
 
-  Object.keys(packages).forEach((name) => {
-    const range = packages[name];
-    const failure = compatibleVersionIsInstalled(name, range);
+    Object.keys(packages).forEach((name) => {
+      const range = packages[name];
+      const failure = compatibleVersionIsInstalled(name, range);
 
-    if (failure !== true) {
-      failures[name] = failure;
+      if (failure !== true) {
+        failures[name] = failure;
+      }
+    });
+
+    if (Object.keys(failures).length === 0) {
+      return;
     }
-  });
 
-  if (Object.keys(failures).length === 0) {
-    return;
+    const errors: string[] = [];
+
+    Object.keys(failures).forEach((name) => {
+      const installed = failures[name];
+      const requirement = `${name}@${packages[name]}`;
+
+      if (installed) {
+        errors.push(` - ${name}@${installed} installed, ${requirement} needed`);
+      } else {
+        errors.push(` - ${name}@${packages[name]} not installed.`);
+      }
+    });
+
+    const qualifier = packageName ? `(for ${packageName}) ` : '';
+    console.warn(`WARNING: npm peer requirements ${qualifier}not installed:
+  ${errors.join('\n')}
+
+  Read more about installing npm peer dependencies:
+    http://guide.meteor.com/using-packages.html#peer-npm-dependencies
+  `);
   }
-
-  const errors: string[] = [];
-
-  Object.keys(failures).forEach((name) => {
-    const installed = failures[name];
-    const requirement = `${name}@${packages[name]}`;
-
-    if (installed) {
-      errors.push(` - ${name}@${installed} installed, ${requirement} needed`);
-    } else {
-      errors.push(` - ${name}@${packages[name]} not installed.`);
-    }
-  });
-
-  const qualifier = packageName ? `(for ${packageName}) ` : '';
-  console.warn(`WARNING: npm peer requirements ${qualifier}not installed:
-${errors.join('\n')}
-
-Read more about installing npm peer dependencies:
-  http://guide.meteor.com/using-packages.html#peer-npm-dependencies
-`);
 };
