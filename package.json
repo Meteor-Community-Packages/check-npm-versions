@@ -18,6 +18,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/meteor": "^1.4.45",
     "@types/semver": "^7.1.0",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "eslint": "^6.8.0",
@@ -60,12 +61,12 @@
   },
   "husky": {
     "hooks": {
-        "pre-commit": "tsc --noEmit && lint-staged"
+      "pre-commit": "tsc --noEmit && lint-staged"
     }
   },
   "lint-staged": {
-      "*.{js,ts,tsx,jsx}": [
-          "npm run --silent lint"
-      ]
+    "*.{js,ts,tsx,jsx}": [
+      "npm run --silent lint"
+    ]
   }
 }
