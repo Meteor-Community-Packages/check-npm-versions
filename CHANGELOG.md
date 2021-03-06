@@ -3,10 +3,7 @@
 ## 1.0.0 - TBD
 
 - Updated to use typescript
-
-### Breaking Changes
-
-- Made package server only. There isn't any reason for code to run on the client and doing so has been a confusing experience in the past. This will break some current usage if code is used on the client.
+- Updated semver dependency to 7.3.4
 
 ## 0.3.2 - 17/01/2018
 
