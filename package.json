@@ -1,0 +1,72 @@
+{
+  "name": "check-npm-versions",
+  "version": "1.0.0",
+  "description": "Enforces \"peer\" npm dependencies in Meteor 1.3 Atmosphere packages.",
+  "main": "package.js",
+  "author": "Tom Coleman",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meteor-Community-Packages/check-npm-versions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Meteor-Community-Packages/check-npm-versions/issues"
+  },
+  "homepage": "https://github.com/Meteor-Community-Packages/check-npm-versions#readme",
+  "scripts": {
+    "lint": "eslint --fix"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/meteor": "^1.4.45",
+    "@types/semver": "^7.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard-with-typescript": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "typescript": "^3.8.3"
+  },
+  "eslintConfig": {
+    "extends": "standard-with-typescript",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "@typescript-eslint/restrict-template-expressions": "off",
+      "@typescript-eslint/strict-boolean-expressions": "off",
+      "semi": [
+        2,
+        "always"
+      ],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ]
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "settings": {}
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx}": [
+      "npm run --silent lint"
+    ]
+  }
+}
