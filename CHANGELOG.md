@@ -1,6 +1,6 @@
 # Change Log
 
-## 1.0.0 - TBD
+## 1.0.0 - 06/03/2021
 
 - Updated to use typescript
 - Updated semver dependency to 7.3.4
