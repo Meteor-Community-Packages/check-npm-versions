@@ -10,7 +10,7 @@ Package.describe({
 Npm.depends({ semver: '7.3.4' });
 
 Package.onUse(function (api) {
-  api.versionsFrom('1.8.2');
+  api.versionsFrom('2.0');
   api.use('typescript');
   api.mainModule('check-npm-versions.ts');
 });
