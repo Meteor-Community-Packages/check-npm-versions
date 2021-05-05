@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.2 - 2021-05-05
+
+- Downgrade semver dependency to 6.3.0 for Internet Explorer compatibility
+
 ## 1.0.1 - 10/03/2021
 
 - updated versionsFrom to Meteor 2.0
