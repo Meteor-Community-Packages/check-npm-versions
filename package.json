@@ -15,7 +15,7 @@
   "homepage": "https://github.com/Meteor-Community-Packages/check-npm-versions#readme",
   "scripts": {
     "lint": "eslint --fix ./**/*.ts",
-    "publish-release": "rimraf ./node_modules && meteor publish && meteor npm i --only=dev",
+    "publish-release": "meteor publish",
     "pre-commit": "tsc --noEmit && lint-staged",
     "prepare": "husky install"
   },
