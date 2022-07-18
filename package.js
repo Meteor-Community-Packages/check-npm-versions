@@ -12,5 +12,6 @@ Npm.depends({ semver: '6.3.0' }); // 7.x versions are incompatible with Internet
 Package.onUse(function (api) {
   api.versionsFrom('2.0');
   api.use('typescript');
+  api.use('zodern:types@1.0.7');
   api.mainModule('check-npm-versions.ts');
 });
