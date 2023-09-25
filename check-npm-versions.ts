@@ -23,11 +23,11 @@ const compatibleVersionIsInstalled = (name: string, range: string | semver.Range
     } else {
       return installedVersion;
     }
-  } catch (e) {
+  } catch (e: any) {
     // XXX add something to the tool to make this more reliable
     const message = e.toString();
-    // One message comes out of the install npm package the other from npm directly
-    if (message.includes('Cannot find module') === true || message.includes("Can't find npm module") === true) {
+    // One message comes out of the installation npm package the other from npm directly
+    if (message.includes('Cannot find module') || message.includes("Can't find npm module")) {
       return false;
     } else {
       throw e;
