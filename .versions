@@ -12,6 +12,6 @@ modules@0.20.0
 modules-runtime@0.13.1
 promise@0.12.2
 react-fast-refresh@0.2.8
-tmeasday:check-npm-versions@2.0.0-beta.0
+tmeasday:check-npm-versions@2.0.0-rc300.0
 typescript@4.9.5
 zodern:types@1.0.13
