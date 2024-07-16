@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.3 - 2024-07-16
+* Updated dependencies
+* Replaced `forEach` loops with `for of` loops for better performance
+
 ## 1.0.2 - 2021-05-05
 
 - Downgrade semver dependency to 6.3.0 for Internet Explorer compatibility
