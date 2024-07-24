@@ -23,11 +23,11 @@ const compatibleVersionIsInstalled = (name: string, range: string | semver.Range
     } else {
       return installedVersion;
     }
-  } catch (e) {
+  } catch (e: any) {
     // XXX add something to the tool to make this more reliable
     const message = e.toString();
-    // One message comes out of the install npm package the other from npm directly
-    if (message.includes('Cannot find module') === true || message.includes("Can't find npm module") === true) {
+    // One message comes out of the installation npm package the other from npm directly
+    if (message.includes('Cannot find module') || message.includes("Can't find npm module")) {
       return false;
     } else {
       throw e;
@@ -39,14 +39,14 @@ export const checkNpmVersions = (packages: indexAny, packageName: string): void 
   if (Meteor.isDevelopment) {
     const failures: indexBoolorString = {};
 
-    Object.keys(packages).forEach((name) => {
+    for (const name of Object.keys(packages)) {
       const range = packages[name];
       const failure = compatibleVersionIsInstalled(name, range);
 
       if (failure !== true) {
         failures[name] = failure;
       }
-    });
+    }
 
     if (Object.keys(failures).length === 0) {
       return;
@@ -54,7 +54,7 @@ export const checkNpmVersions = (packages: indexAny, packageName: string): void 
 
     const errors: string[] = [];
 
-    Object.keys(failures).forEach((name) => {
+    for (const name of Object.keys(failures)) {
       const installed = failures[name];
       const requirement = `${name}@${packages[name]}`;
 
@@ -63,7 +63,7 @@ export const checkNpmVersions = (packages: indexAny, packageName: string): void 
       } else {
         errors.push(` - ${name}@${packages[name]} not installed.`);
       }
-    });
+    }
 
     const qualifier = packageName ? `(for ${packageName}) ` : '';
     console.warn(`WARNING: npm peer requirements ${qualifier}not installed:
