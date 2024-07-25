@@ -1,5 +1,9 @@
 # check-npm-versions
 
+[![Test suite](https://github.com/Meteor-Community-Packages/check-npm-versions/actions/workflows/testsuite.yml/badge.svg)](https://github.com/Meteor-Community-Packages/check-npm-versions/actions/workflows/testsuite.yml)
+[![CodeQL](https://github.com/Meteor-Community-Packages/check-npm-versions/actions/workflows/codeql.yml/badge.svg)](https://github.com/Meteor-Community-Packages/check-npm-versions/actions/workflows/codeql.yml)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
 Enforces "peer" npm dependencies in Meteor packages.
 
 Use this package if you are writing an Meteor package that depends on a given npm package is installed at the app level of projects you are installed in.
