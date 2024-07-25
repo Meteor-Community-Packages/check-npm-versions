@@ -30,36 +30,6 @@
     "typescript": "^5.5.4",
     "typescript-eslint": "^7.17.0"
   },
-  "eslintConfig": {
-    "extends": "standard-with-typescript",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "rules": {
-      "@typescript-eslint/no-var-requires": "off",
-      "@typescript-eslint/restrict-template-expressions": "off",
-      "@typescript-eslint/strict-boolean-expressions": "off",
-      "semi": "off",
-      "@typescript-eslint/semi": [
-        "error",
-        "always"
-      ],
-      "comma-dangle": [
-        2,
-        "always-multiline"
-      ]
-    },
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint"
-    ],
-    "env": {
-      "browser": true,
-      "node": true,
-      "es6": true
-    },
-    "settings": {}
-  },
   "husky": {
     "hooks": {
       "pre-commit": "tsc --noEmit && lint-staged"
