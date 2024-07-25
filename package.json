@@ -15,6 +15,7 @@
   "homepage": "https://github.com/Meteor-Community-Packages/check-npm-versions#readme",
   "scripts": {
     "lint": "eslint ./**/*.ts",
+    "lint:ts": "tsc --noEmit",
     "publish-release": "meteor publish",
     "pre-commit": "tsc --noEmit && lint-staged"
   },
