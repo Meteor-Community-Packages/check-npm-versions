@@ -14,53 +14,22 @@
   },
   "homepage": "https://github.com/Meteor-Community-Packages/check-npm-versions#readme",
   "scripts": {
-    "lint": "eslint --fix ./**/*.ts",
+    "lint": "eslint ./**/*.ts",
+    "lint:ts": "tsc --noEmit",
     "publish-release": "meteor publish",
     "pre-commit": "tsc --noEmit && lint-staged"
   },
   "devDependencies": {
-    "@types/meteor": "^1.4.87",
+    "@eslint/js": "^9.7.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/meteor": "^2.9.8",
     "@types/semver": "^7.5.8",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "eslint": "^7.32.0",
-    "eslint-config-standard-with-typescript": "^20.0.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.3.1",
-    "eslint-plugin-standard": "^5.0.0",
+    "eslint": "^9.7.0",
+    "husky": "^5.2.0",
     "lint-staged": "^13.3.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.9.5"
-  },
-  "eslintConfig": {
-    "extends": "standard-with-typescript",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "rules": {
-      "@typescript-eslint/no-var-requires": "off",
-      "@typescript-eslint/restrict-template-expressions": "off",
-      "@typescript-eslint/strict-boolean-expressions": "off",
-      "semi": "off",
-      "@typescript-eslint/semi": [
-        "error",
-        "always"
-      ],
-      "comma-dangle": [
-        2,
-        "always-multiline"
-      ]
-    },
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint"
-    ],
-    "env": {
-      "browser": true,
-      "node": true,
-      "es6": true
-    },
-    "settings": {}
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^7.17.0"
   },
   "husky": {
     "hooks": {
