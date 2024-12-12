@@ -17,6 +17,7 @@ interface indexAny {
 //   - version#  if incompatible version is installed
 const compatibleVersionIsInstalled = (name: string, range: string | semver.Range): boolOrString => {
   try {
+    // eslint-disable-next-line
     const installedVersion = require(`${name}/package.json`).version;
     if (semver.satisfies(installedVersion, range)) {
       return true;
@@ -70,7 +71,7 @@ export const checkNpmVersions = (packages: indexAny, packageName: string): void 
   ${errors.join('\n')}
 
   Read more about installing npm peer dependencies:
-    http://guide.meteor.com/using-packages.html#peer-npm-dependencies
+    https://guide.meteor.com/using-packages.html#peer-npm-dependencies
   `);
   }
 };

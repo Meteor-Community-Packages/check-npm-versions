@@ -20,16 +20,16 @@
     "pre-commit": "tsc --noEmit && lint-staged"
   },
   "devDependencies": {
-    "@eslint/js": "^9.7.0",
+    "@eslint/js": "^9.16.0",
     "@types/eslint__js": "^8.42.3",
     "@types/meteor": "^2.9.8",
     "@types/semver": "^7.5.8",
-    "eslint": "^9.7.0",
-    "husky": "^5.2.0",
-    "lint-staged": "^13.3.0",
-    "rimraf": "^3.0.2",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^7.17.0"
+    "eslint": "^9.16.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0"
   },
   "husky": {
     "hooks": {
