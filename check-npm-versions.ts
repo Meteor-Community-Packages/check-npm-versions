@@ -71,7 +71,7 @@ export const checkNpmVersions = (packages: indexAny, packageName: string): void 
   ${errors.join('\n')}
 
   Read more about installing npm peer dependencies:
-    http://guide.meteor.com/using-packages.html#peer-npm-dependencies
+    https://guide.meteor.com/using-packages.html#peer-npm-dependencies
   `);
   }
 };
