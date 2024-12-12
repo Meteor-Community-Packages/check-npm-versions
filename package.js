@@ -1,7 +1,7 @@
 /* global Package:readonly, Npm:readonly  */
 Package.describe({
   name: 'tmeasday:check-npm-versions',
-  version: '2.0.1',
+  version: '2.1.0',
   summary: 'Check that required npm packages are installed at the app level',
   git: 'https://github.com/tmeasday/check-npm-versions.git',
   documentation: 'README.md',
