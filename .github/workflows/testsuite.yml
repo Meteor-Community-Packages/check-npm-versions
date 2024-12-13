@@ -17,15 +17,15 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 22
 
       - name: cache dependencies
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-24-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-22-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-24-
+            ${{ runner.os }}-node-22-
 
       - run: |
           npm ci
